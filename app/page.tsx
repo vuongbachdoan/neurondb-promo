@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Database, Network, Code, Users, ArrowRight, Download, Play } from "lucide-react"
+import { CheckCircle, Database, Network, Code, Users, ArrowRight, Download, Play, Menu, X } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 
 const GitHubIcon = () => (
@@ -37,9 +37,16 @@ const FeaturesIcon = () => (
   </svg>
 )
 
+const AuthorIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.3163 19.4384C5.92462 18.0052 7.34492 17 9 17H15C16.6551 17 18.0754 18.0052 18.6837 19.4384M16 9.5C16 11.7091 14.2091 13.5 12 13.5C9.79086 13.5 8 11.7091 8 9.5C8 7.29086 9.79086 5.5 12 5.5C14.2091 5.5 16 7.29086 16 9.5ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)
+
 export default function NeuronEnginePage() {
   const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState({})
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const observerRef = useRef(null)
 
   useEffect(() => {
@@ -73,6 +80,8 @@ export default function NeuronEnginePage() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrollY > 50 ? 'backdrop-blur-md bg-black/80' : ''}`}>
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="text-xl font-black">NeuronDB</div>
+          
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <a href="#capabilities-header" className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-1">
               <FeaturesIcon />
@@ -86,12 +95,49 @@ export default function NeuronEnginePage() {
               <DocsIcon />
               Docs
             </a>
+            <a href="https://www.linkedin.com/in/vuongbd2007/" target="_blank" className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-1">
+              <AuthorIcon />
+              Author
+            </a>
             <Button size="sm" className="bg-green-500 hover:bg-green-600 text-black font-bold" onClick={() => window.open("https://github.com/vuongbachdoan/neurondb", "_blank")}>
               <GitHubIcon />
               GitHub
             </Button>
           </nav>
+          
+          {/* Mobile Menu Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="md:hidden text-gray-300 hover:text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
+        
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
+            <nav className="px-4 py-4 space-y-4">
+              <a href="#capabilities-header" className="block text-gray-300 hover:text-green-400 transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Features
+              </a>
+              <a href="/package" className="block text-gray-300 hover:text-green-400 transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Package
+              </a>
+              <a href="/docs" className="block text-gray-300 hover:text-green-400 transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Docs
+              </a>
+              <a href="https://www.linkedin.com/in/vuongbd2007/" target="_blank" className="block text-gray-300 hover:text-green-400 transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Author
+              </a>
+              <Button size="sm" className="bg-green-500 hover:bg-green-600 text-black font-bold w-full" onClick={() => { window.open("https://github.com/vuongbachdoan/neurondb", "_blank"); setMobileMenuOpen(false); }}>
+                GitHub
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
       <div className="fixed inset-0 pointer-events-none">
         <div
@@ -121,15 +167,12 @@ export default function NeuronEnginePage() {
           <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
             A neural graph database that combines semantic embeddings with neuron-like behavior for intelligent data storage and retrieval.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-            <Button size="lg" className="text-lg px-8 py-6 bg-green-500 hover:bg-green-600 text-black font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25">
-              <Play className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-              Start for free
-            </Button>
+          <div className="flex justify-center animate-fade-in-up animation-delay-400">
             <Button
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 border-gray-600 text-white hover:bg-gray-800 bg-transparent transition-all duration-300 hover:scale-105 hover:border-green-400"
+              onClick={() => window.location.href = "mailto:vuongbachdoan@gmail.com"}
             >
               <MailIcon />
               Talk to us
@@ -138,85 +181,68 @@ export default function NeuronEnginePage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Demo Section */}
       <section className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Demo</h2>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div 
-              id="scaling-text"
+              id="demo-summary"
               data-animate
-              className={`transition-all duration-1000 ${isVisible['scaling-text'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transform: `translateY(${scrollY * 0.02}px)` }}
+              className={`transition-all duration-1000 ${isVisible['demo-summary'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             >
-              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Semantic Search</h2>
-              <p className="text-xl text-gray-300 mb-6 leading-relaxed">
-                True semantic similarity search using 384-dimension embeddings. Find related concepts across languages with neural spreading activation and Hebbian learning.
-              </p>
-              <Button variant="link" className="text-green-400 hover:text-green-300 p-0 text-lg transition-all duration-300 hover:translate-x-2">
-                Explore Semantic Search →
-              </Button>
+              <h3 className="text-2xl font-bold text-green-400 mb-6">About NeuronDB</h3>
+              <p className="text-gray-300">A neural graph database that understands meaning, not just keywords.</p>
             </div>
+            
             <div 
-              id="scaling-visual"
+              id="demo-video"
               data-animate
-              className={`relative transition-all duration-1000 delay-200 ${isVisible['scaling-visual'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transform: `translateY(${scrollY * 0.025}px)` }}
+              className={`transition-all duration-1000 delay-300 ${isVisible['demo-video'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             >
-              <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center hover:bg-purple-500/30 transition-all duration-300 group">
-                    <div className="w-8 h-8 bg-purple-500 rounded-full animate-pulse group-hover:scale-110 transition-transform"></div>
-                  </div>
-                  <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center hover:bg-blue-500/30 transition-all duration-300 group animation-delay-100">
-                    <div className="w-8 h-8 bg-blue-500 rounded-full animate-pulse group-hover:scale-110 transition-transform"></div>
-                  </div>
-                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center hover:bg-green-500/30 transition-all duration-300 group animation-delay-200">
-                    <div className="w-8 h-8 bg-green-500 rounded-full animate-pulse group-hover:scale-110 transition-transform"></div>
-                  </div>
-                </div>
-                <div className="text-sm text-gray-400">Neural connections visualized</div>
+              <div className="aspect-video">
+                <iframe
+                  src="https://www.youtube.com/embed/NwKTk-TQiJ4"
+                  title="NeuronDB Demo"
+                  className="w-full h-full rounded-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      {/* Architecture Section */}
+      <section className="py-20 px-4 relative bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
             <div 
-              id="branching-visual"
+              id="architecture-header"
               data-animate
-              className={`relative transition-all duration-1000 ${isVisible['branching-visual'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transform: `translateY(${scrollY * 0.02}px)` }}
+              className={`transition-all duration-1000 ${isVisible['architecture-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             >
-              <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10">
-                <h3 className="text-2xl font-bold mb-4 text-green-400">Neural Graph</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 hover:bg-gray-800/50 p-2 rounded transition-all duration-200">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-gray-300">Semantic Embeddings</span>
-                  </div>
-                  <div className="flex items-center gap-3 ml-6 hover:bg-gray-800/50 p-2 rounded transition-all duration-200 animation-delay-100">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                    <span className="text-gray-300">Spreading Activation</span>
-                  </div>
-                  <div className="flex items-center gap-3 ml-6 hover:bg-gray-800/50 p-2 rounded transition-all duration-200 animation-delay-200">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                    <span className="text-gray-300">Hebbian Learning</span>
-                  </div>
-                </div>
-              </div>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Architecture</h2>
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                NeuronDB implements a layered architecture with semantic embeddings and neural graph operations
+              </p>
             </div>
             <div 
-              id="branching-text"
+              id="architecture-diagram"
               data-animate
-              className={`transition-all duration-1000 delay-200 ${isVisible['branching-text'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transform: `translateY(${scrollY * 0.025}px)` }}
+              className={`transition-all duration-1000 delay-300 ${isVisible['architecture-diagram'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             >
-              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Neural Operations</h2>
-              <p className="text-xl text-gray-300 mb-6 leading-relaxed">
-                Implement spreading activation, Hebbian learning, and temporal decay. Build intelligent knowledge graphs with cross-language semantic understanding.
-              </p>
-              <Button variant="link" className="text-green-400 hover:text-green-300 p-0 text-lg transition-all duration-300 hover:translate-x-2">
-                Explore Neural Ops →
-              </Button>
+              <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+                <img 
+                  src="/architecture.svg" 
+                  alt="NeuronDB Architecture" 
+                  className="w-full max-w-4xl mx-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -301,7 +327,7 @@ export default function NeuronEnginePage() {
           >
             <Card className="bg-gray-900 border-2 border-gray-800 hover:border-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-green-500/10">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Code className="h-5 w-5 text-green-400 animate-pulse" />
                   NQL Example
                 </CardTitle>
@@ -493,11 +519,7 @@ $ neurondbd -v
             Experience the future of neural database technology with semantic embeddings, spreading activation, and intelligent data retrieval.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up animation-delay-400">
-            <Button size="lg" className="text-lg px-8 py-6 bg-green-500 hover:bg-green-600 text-black font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 group">
-              <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
-              Start for free
-            </Button>
+          <div className="flex justify-center mb-16 animate-fade-in-up animation-delay-400">
             <Button
               size="lg"
               variant="outline"

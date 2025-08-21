@@ -74,14 +74,28 @@ STATS;`
           <div>
             <h2 className="text-3xl font-bold text-green-400 mb-4">Overview</h2>
             <p className="text-gray-200 mb-4">NeuronDB is a neural graph database engine that combines semantic embeddings with neuron-like behavior for intelligent data storage and retrieval.</p>
-            <p className="text-gray-300">Features include semantic embeddings, neural graph operations, NQL query language, and RAG integration.</p>
+            <p className="text-gray-300 mb-6">Built for modern AI applications, NeuronDB implements neural network concepts like spreading activation, Hebbian learning, and temporal decay with semantic search capabilities.</p>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Key Features</h3>
+            <ul className="text-gray-300 space-y-2 mb-6">
+              <li>• <strong className="text-white">Semantic Embeddings:</strong> 384-dimension vectors using sentence-transformers</li>
+              <li>• <strong className="text-white">Neural Operations:</strong> Spreading activation and Hebbian learning</li>
+              <li>• <strong className="text-white">NQL Language:</strong> Custom query language for neural operations</li>
+              <li>• <strong className="text-white">Cross-Language:</strong> Semantic search across multiple languages</li>
+              <li>• <strong className="text-white">RAG Ready:</strong> Complete integration with Streamlit and AWS Bedrock</li>
+            </ul>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Use Cases</h3>
+            <p className="text-gray-300">Perfect for semantic search, knowledge graphs, recommendation systems, and AI applications requiring intelligent data relationships.</p>
           </div>
         )
       case 'install':
         return (
           <div>
             <h2 className="text-3xl font-bold text-green-400 mb-4">Installation</h2>
-            <div className="bg-gray-800 p-4 rounded-lg mb-4 relative">
+            <p className="text-gray-200 mb-4">Install NeuronDB from TestPyPI using pip. The package includes all necessary dependencies for semantic embeddings and neural operations.</p>
+            
+            <div className="bg-gray-800 p-4 rounded-lg mb-6 relative">
               <Button
                 size="sm"
                 variant="ghost"
@@ -92,14 +106,26 @@ STATS;`
               </Button>
               <code className="text-green-400 pr-16">pip install -i https://test.pypi.org/simple/ neurondb-vuongbachdoan==0.2.0</code>
             </div>
-            <p className="text-gray-300">Requires Python 3.8+, 4GB RAM, macOS or Ubuntu.</p>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">System Requirements</h3>
+            <ul className="text-gray-300 space-y-2 mb-6">
+              <li>• <strong className="text-white">Python:</strong> 3.8 or higher</li>
+              <li>• <strong className="text-white">Memory:</strong> 4GB RAM minimum (8GB recommended)</li>
+              <li>• <strong className="text-white">Storage:</strong> 1GB disk space</li>
+              <li>• <strong className="text-white">Platform:</strong> macOS 10.14+ or Ubuntu 18.04+</li>
+            </ul>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Dependencies</h3>
+            <p className="text-gray-300">The installation automatically includes sentence-transformers for semantic embeddings, FAISS for vector search, and other required packages.</p>
           </div>
         )
       case 'example':
         return (
           <div>
             <h2 className="text-3xl font-bold text-green-400 mb-4">Example</h2>
-            <div className="bg-gray-800 p-4 rounded-lg relative">
+            <p className="text-gray-200 mb-4">Here's a complete example showing how to start NeuronDB, connect a client, and perform basic neural operations using NQL commands.</p>
+            
+            <div className="bg-gray-800 p-4 rounded-lg relative mb-6">
               <Button
                 size="sm"
                 variant="ghost"
@@ -122,18 +148,38 @@ LEARN COMMIT;
 STATS;`}
               </pre>
             </div>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Command Explanation</h3>
+            <ul className="text-gray-300 space-y-3">
+              <li>• <strong className="text-white">neurondbd -v:</strong> Starts the NeuronDB server with verbose logging on port 4306</li>
+              <li>• <strong className="text-white">neurondb -h localhost -P 4306:</strong> Connects the CLI client to the server</li>
+              <li>• <strong className="text-white">INGEST:</strong> Creates semantic embeddings and stores text as neural nodes</li>
+              <li>• <strong className="text-white">FIRE:</strong> Performs semantic search with spreading activation (2 steps, top 5 results)</li>
+              <li>• <strong className="text-white">LEARN COMMIT:</strong> Applies Hebbian learning to strengthen neural connections</li>
+              <li>• <strong className="text-white">STATS:</strong> Shows system statistics including node count and vector dimensions</li>
+            </ul>
           </div>
         )
       case 'dependencies':
         return (
           <div>
             <h2 className="text-3xl font-bold text-green-400 mb-4">Dependencies</h2>
+            <p className="text-gray-200 mb-6">NeuronDB relies on several key libraries to provide semantic embeddings, vector search, and neural operations. All dependencies are automatically installed during setup.</p>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Core Dependencies</h3>
+            <ul className="text-gray-300 space-y-3 mb-6">
+              <li>• <strong className="text-white">sentence-transformers:</strong> Provides 384-dimension semantic embeddings using the 'all-MiniLM-L6-v2' model</li>
+              <li>• <strong className="text-white">FAISS:</strong> Facebook's library for efficient vector similarity search and approximate nearest neighbor indexing</li>
+              <li>• <strong className="text-white">Lark:</strong> Modern parsing toolkit for NQL (Neuron Query Language) command processing</li>
+              <li>• <strong className="text-white">NumPy:</strong> Fundamental package for numerical computations and array operations</li>
+              <li>• <strong className="text-white">PyYAML:</strong> YAML parser for configuration file management and settings</li>
+            </ul>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Optional Dependencies</h3>
+            <p className="text-gray-300 mb-4">For RAG integration and advanced features:</p>
             <ul className="text-gray-300 space-y-2">
-              <li>• sentence-transformers (semantic embeddings)</li>
-              <li>• FAISS (vector similarity search)</li>
-              <li>• Lark (NQL parsing)</li>
-              <li>• NumPy (numerical computations)</li>
-              <li>• PyYAML (configuration management)</li>
+              <li>• <strong className="text-white">Streamlit:</strong> For web-based RAG interface</li>
+              <li>• <strong className="text-white">boto3:</strong> For AWS Bedrock integration</li>
             </ul>
           </div>
         )
@@ -141,8 +187,23 @@ STATS;`}
         return (
           <div>
             <h2 className="text-3xl font-bold text-green-400 mb-4">License</h2>
-            <p className="text-gray-200 mb-4">MIT License</p>
-            <p className="text-gray-300">Free to use, modify, and distribute. See LICENSE file for details.</p>
+            <p className="text-gray-200 mb-6">NeuronDB is released under the MIT License, one of the most permissive open-source licenses available.</p>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">What this means:</h3>
+            <ul className="text-gray-300 space-y-2 mb-6">
+              <li>• <strong className="text-white">Commercial Use:</strong> You can use NeuronDB in commercial projects</li>
+              <li>• <strong className="text-white">Modification:</strong> You can modify the source code to fit your needs</li>
+              <li>• <strong className="text-white">Distribution:</strong> You can distribute original or modified versions</li>
+              <li>• <strong className="text-white">Private Use:</strong> You can use NeuronDB for private/internal projects</li>
+            </ul>
+            
+            <h3 className="text-xl font-bold text-green-400 mb-3">Requirements:</h3>
+            <ul className="text-gray-300 space-y-2 mb-6">
+              <li>• <strong className="text-white">License Notice:</strong> Include the original license and copyright notice</li>
+              <li>• <strong className="text-white">No Warranty:</strong> The software is provided "as is" without warranty</li>
+            </ul>
+            
+            <p className="text-gray-300">For complete license terms, see the LICENSE file in the GitHub repository.</p>
           </div>
         )
       default:

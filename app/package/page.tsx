@@ -80,15 +80,15 @@ FIRE "AI" STEPS=2 TOPK=5;`}
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="flex justify-between">
-                <span>Python</span>
+                <span className="text-white">Python</span>
                 <Badge variant="secondary">3.8+</Badge>
               </div>
               <div className="flex justify-between">
-                <span>Memory</span>
+                <span className="text-white">Memory</span>
                 <Badge variant="secondary">4GB+</Badge>
               </div>
               <div className="flex justify-between">
-                <span>Platform</span>
+                <span className="text-white">Platform</span>
                 <Badge variant="secondary">macOS, Ubuntu</Badge>
               </div>
             </CardContent>
