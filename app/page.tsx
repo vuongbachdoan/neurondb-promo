@@ -357,9 +357,9 @@ GET "e547539d133d2197";`}</code>
       </section>
 
       {/* Use Cases */}
-      <section className="py-20 px-4 bg-gray-950 relative">
+      <section className="py-20 px-4 bg-gray-950 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16" style={{ transform: `translateY(${scrollY * 0.02}px)` }}>
+          <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-black mb-4">Perfect For</h2>
             <p className="text-xl text-white max-w-2xl mx-auto">
               NeuronDB excels in scenarios requiring semantic understanding and intelligent data relationships.
@@ -382,12 +382,9 @@ GET "e547539d133d2197";`}</code>
               <div 
                 key={index} 
                 className={`animate-fade-in-up`}
-                style={{ 
-                  transform: `translateY(${scrollY * (0.01 + index * 0.002)}px)`,
-                  animationDelay: `${index * 100}ms`
-                }}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <Card className="hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 bg-gray-900 border border-gray-800 hover:border-green-500/30 hover:scale-105 group">
+                <Card className="hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 bg-gray-900 border border-gray-800 hover:border-green-500/30 hover:scale-105 group relative z-20">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-green-400 group-hover:scale-110 transition-transform" />

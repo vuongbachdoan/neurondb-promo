@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Book, Code, Home } from "lucide-react"
+import { Book, Code, Home, Menu, X } from "lucide-react"
 import { useState } from "react"
 
 const CopyIcon = () => (
@@ -17,6 +17,7 @@ export default function DocsPage() {
   const [showDeveloperGuide, setShowDeveloperGuide] = useState(false)
   const [showQuickStart, setShowQuickStart] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const copyQuickStart = () => {
     const text = `# Install
@@ -235,7 +236,7 @@ STATS;`}
               >
                 {copied ? "Copied!" : <CopyIcon />}
               </Button>
-              <pre className="text-green-400 text-sm pr-16">
+              <pre className="text-green-400 text-sm pr-16 overflow-x-auto">
 {`# Install
 pip install -i https://test.pypi.org/simple/ neurondb-vuongbachdoan==0.2.0
 
@@ -260,7 +261,8 @@ STATS;`}
     return (
       <div className="min-h-screen bg-black text-white font-mono">
         <div className="flex">
-          <div className="w-64 bg-gray-900 min-h-screen p-6">
+          {/* Desktop Sidebar */}
+          <div className="hidden lg:block w-64 bg-gray-900 min-h-screen p-6">
             <h3 className="text-lg font-bold text-green-400 mb-6">Developer Guide</h3>
             <nav className="space-y-2">
               {sidebarItems.map((item) => (
@@ -285,7 +287,62 @@ STATS;`}
               ← Back to Docs
             </Button>
           </div>
-          <div className="flex-1 p-8">
+          
+          {/* Mobile Sidebar Overlay */}
+          {sidebarOpen && (
+            <div className="lg:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setSidebarOpen(false)}>
+              <div className="w-64 bg-gray-900 h-full p-6" onClick={(e) => e.stopPropagation()}>
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-lg font-bold text-green-400">Developer Guide</h3>
+                  <Button variant="ghost" size="sm" onClick={() => setSidebarOpen(false)}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                <nav className="space-y-2">
+                  {sidebarItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => { setActiveSection(item.id); setSidebarOpen(false); }}
+                      className={`block w-full text-left p-2 rounded transition-colors ${
+                        activeSection === item.id 
+                          ? 'bg-green-500/20 text-green-400' 
+                          : 'text-gray-300 hover:text-green-400 hover:bg-gray-800'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </nav>
+                <Button
+                  variant="ghost"
+                  className="mt-8 text-gray-300 hover:text-white"
+                  onClick={() => setShowDeveloperGuide(false)}
+                >
+                  ← Back to Docs
+                </Button>
+              </div>
+            </div>
+          )}
+          
+          <div className="flex-1 p-4 lg:p-8">
+            {/* Mobile Header */}
+            <div className="lg:hidden flex justify-between items-center mb-6">
+              <Button
+                variant="ghost"
+                onClick={() => setSidebarOpen(true)}
+                className="text-gray-300 hover:text-white"
+              >
+                <Menu className="h-5 w-5 mr-2" />
+                Menu
+              </Button>
+              <Button
+                variant="ghost"
+                className="text-gray-300 hover:text-white"
+                onClick={() => setShowDeveloperGuide(false)}
+              >
+                ← Back
+              </Button>
+            </div>
             {renderContent()}
           </div>
         </div>
