@@ -182,7 +182,7 @@ export default function NeuronEnginePage() {
       </section>
 
       {/* Demo Section */}
-      <section className="py-20 px-4 relative">
+      {/* <section className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Demo</h2>
@@ -215,7 +215,7 @@ export default function NeuronEnginePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Architecture Section */}
       <section className="py-20 px-4 relative bg-gray-950">
