@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "NeuronDB",
     images: [
       {
-        url: "/preview.png",
+        url: "https://neurondb.dev/preview.png",
         width: 1200,
         height: 630,
         alt: "NeuronDB Preview",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NeuronDB - Neural Graph Database",
     description: "A neural graph database that understands meaning, not just keywords.",
-    images: ["/preview.png"],
+    images: ["https://neurondb.dev/preview.png"],
   },
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#22c55e",
